@@ -18,12 +18,16 @@ define ['backbone', 'jquery'], (Backbone, $) ->
         .on 'route:catalog', @changeUrl, this
         .on 'route:main', @reset, this
 
+      @value = (@$el.find '.form-input').val()
+
     onSubmit: (e) ->
       e.preventDefault()
       value = ($ e.delegateTarget).find('.form-input').val()
 
       return @showError @invalid unless @validLink.test value
       value = value.replace /\D/g, ''
+
+      return if value is @value.replace /\D/g, ''
 
       @router.navigate value
       @setUrl value
