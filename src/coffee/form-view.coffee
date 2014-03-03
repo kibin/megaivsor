@@ -11,6 +11,7 @@ define ['backbone', 'jquery'], (Backbone, $) ->
       \/\d+
       \/?$
     ///
+    invalid: 'Это не похоже на ссылку мегавизора.'
 
     initialize: ({ @router }) ->
       @router
@@ -21,7 +22,7 @@ define ['backbone', 'jquery'], (Backbone, $) ->
       e.preventDefault()
       value = ($ e.delegateTarget).find('.form-input').val()
 
-      return unless @validLink.test value
+      return @showError @invalid unless @validLink.test value
       value = value.replace /\D/g, ''
 
       @router.navigate value
@@ -35,7 +36,7 @@ define ['backbone', 'jquery'], (Backbone, $) ->
       @fillInput catalog
       @setUrl catalog
 
-    showError: (model, error) ->
+    showError: (error) ->
       $win = $ window
       $input = @$ '.form-input'
 
