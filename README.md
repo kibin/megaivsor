@@ -9,6 +9,11 @@ Megaivsor Cover-Flow
     npm install
     bower install
 
+Генераторы не запускаются на версии ноды ниже 0.11.4, поэтому:
+
+    npm install -g n
+    n 0.11.4
+
 ## Запуск
 
 ### Для продакшена
