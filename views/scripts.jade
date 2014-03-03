@@ -1,0 +1,4 @@
+if process.env.NODE_ENV === 'development'
+  script(src="/js/vendor/requirejs/require.js", data-main="/js/main")
+else
+  script(src="/js/main.js")

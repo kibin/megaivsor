@@ -1,0 +1,74 @@
+.carousel-card
+  cursor: pointer
+  user-select: none
+  width: 320px
+  height: 240px
+  top: 50%
+  left: 50%
+  margin-top: -120px
+  margin-left: -160px
+  position: absolute
+  overflow: hidden
+  shadow-border(#BBB, null)
+  background-color: #FFF
+  backface-visibility: hidden
+  transform-style: preserve-3d
+  outline: 1px solid transparent
+  transition: transform .4s bezier(), z-index .1s bezier(), width .2s bezier(), height .2s bezier(), margin .2s bezier()
+
+  &_active
+    z-index: 13
+    transform: translateZ(100px)
+
+  &_scaled
+    width: 640px
+    height: 480px
+    margin-left: -320px
+    margin-top: -240px
+    transition: width .4s bezier(), height .4s bezier(), margin .4s bezier()
+
+  transform-curved(translate, direction)
+    transform: perspective(270px) scale3d(0.42, 0.52, 0.51) translateX(translate) translateZ(60px) rotate3d(0, direction, 0, 25deg)
+
+  &_right
+    transform: translateX(2000px)
+
+    for index in (0..7)
+      &_{index}
+        z-index: 10 - index
+        transform-curved: 500px + index * 65, -1
+
+  &_left
+    transform: translateX(-2000px)
+
+    for index in (0..7)
+      &_{index}
+        z-index: 10 - index
+        transform-curved: -500px - index * 65, 1
+
+  parent = selector()
+
+  &-img
+    display: block
+    position: absolute
+    transform: translateX(-50%)
+    left: 50%
+    height: 100%
+
+  &-iframe
+    position: absolute
+    left: 0
+    top: 0
+    display: none
+
+    {parent}_scaled &
+      display: block
+      z-index: 13
+
+  .spinner
+    position: absolute
+    margin: -35px 0 0 -35px !important
+    z-index: 15
+    left: 50%
+    top: 50%
+    animation: rotate .4s linear infinite

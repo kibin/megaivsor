@@ -1,0 +1,7 @@
+.carousel-card(class = "#{item['class']}")
+  img.carousel-card-img(src = "#{item.placeholder}")
+  .spinner.hidden
+  iframe.carousel-card-iframe(
+    data-src="http://media.megavisor.com/player/embed?#{item.uuid}", src=""
+    width="640", height="480", frameborder="0", webkitAllowFullscreen, allowFullscreen
+  )

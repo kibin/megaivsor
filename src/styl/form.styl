@@ -1,0 +1,42 @@
+.form
+  display: block
+  text-align: center
+  min-width: 680px
+  font-family()
+
+  &-input, &-button
+    padding: 0
+    display: inline-block
+    height: 39px
+    font-size: 21px
+    margin: 20px 10px 10px
+    outline: none
+    vertical-align: middle
+
+  &-input
+    text-align: center
+    width: 500px
+    border: none
+    shadow-border()
+    font-family()
+    text-color()
+
+    &:focus
+      shadow-border(blue-color)
+
+    &_error
+      shadow-border(error-color)
+      text-color(error-color)
+
+  &-button
+    width: 100px
+    background-color: blue-color
+    border: none
+    cursor: pointer
+    text-color(#FFF)
+
+    &:hover
+      background-color: lighten(blue-color, 10%)
+
+    &:active
+      background-color: darken(blue-color, 10%)

@@ -1,0 +1,78 @@
+.carousel
+  font-family()
+  margin: 30px auto 80px
+  max-width: 950px
+  min-width: 640px
+  height: 450px
+  padding: 20px
+  position: relative
+  overflow: hidden
+
+  &:before, &:after
+    content: ''
+    display: block
+    height: 100%
+    top: 0
+    background-color: #FFF
+    box-shadow: 0 0 35px 45px #FFF
+    position: absolute
+    z-index: 11
+
+  &:before
+    right: 100%
+
+  &:after
+    left: 100%
+
+  &-veil
+    position: fixed
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+    z-index: 12
+    transform: translateZ(90px)
+
+  .error
+    background-color: #FFF
+    width: 80%
+    padding: 50px 0
+    text-align: center
+    top: 50%
+    left: 50%
+    position: absolute
+    transform: translate(-50%, -50%)
+    shadow-border()
+
+    &-text
+      text-color()
+      display: inline-block
+      font-size: 50px
+
+  .spinner
+    width: 50px
+    height: 50px
+    padding: 10px
+    background-color: blue-color
+    border-radius: 50%
+    top: 50%
+    left: 50%
+    position: absolute
+    margin: -35px 0 0 -35px
+    animation: rotate .5s linear infinite
+
+    &:after
+      content: ''
+      display: block
+      width: 30px
+      height: 30px
+      border: 10px solid transparent
+      border-right-color: #FFF
+      border-left-color: #FFF
+      border-radius: 50%
+
+@keyframes rotate
+  from
+    transform: rotate(0deg)
+  to
+    transform: rotate(360deg)

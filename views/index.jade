@@ -1,0 +1,16 @@
+doctype html
+html
+  head
+    include head
+
+  body
+    include form
+
+    .carousel
+      if catalog
+        if code == 200
+          include carousel
+        else
+          include error
+
+    include scripts
