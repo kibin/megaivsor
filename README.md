@@ -17,6 +17,7 @@ Megaivsor Cover-Flow
 ## Запуск
 
 ### Для продакшена
+    gulp build
     npm start
 
 ### Для разработки

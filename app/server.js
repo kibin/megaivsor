@@ -3,7 +3,7 @@ var router = require('koa-router');
 var serve = require('koa-static');
 var routeHandler = require('./route-handler');
 
-var port = 3000;
+var port = process.env.PORT || 3000;
 var app = koa();
 
 app.use(serve(__dirname + '/../public'));
@@ -17,4 +17,4 @@ app.get('/:catalog', routeHandler);
 app.redirect('/*', '/');
 
 app.listen(port);
-console.log('Listening to the port ' + port);
+console.log('The port is ' + port);
