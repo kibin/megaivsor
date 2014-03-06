@@ -91,8 +91,9 @@ gulp.task('clean', function() {
 });
 
 gulp.task('default', ['clean', 'copy-vendor'], function() {
-    gulp.start('watch', 'nodemon');
     server.listen(35729);
+
+    gulp.start('watch', 'nodemon');
 });
 
 /*

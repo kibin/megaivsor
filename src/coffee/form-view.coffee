@@ -11,20 +11,21 @@ define ['backbone', 'jquery'], (Backbone, $) ->
       \/\d+
       \/?$
     ///
-    invalid: 'Это не похоже на ссылку мегавизора.'
+    invalid: 'Это не похоже на ссылку каталога мегавизора.'
 
     initialize: ({ @router }) ->
       @router
         .on 'route:catalog', @changeUrl, this
         .on 'route:main', @reset, this
 
-      @value = (@$el.find '.form-input').val()
+      [@value, value] = ['', (@$el.find '.form-input').val()]
+      @value = value if @validLink.test value
 
     onSubmit: (e) ->
       e.preventDefault()
       value = ($ e.delegateTarget).find('.form-input').val()
 
-      return @showError @invalid unless @validLink.test value
+      return @showError @invalid, value unless @validLink.test value
       value = value.replace /\D/g, ''
 
       return if value is @value.replace /\D/g, ''
@@ -40,17 +41,19 @@ define ['backbone', 'jquery'], (Backbone, $) ->
       @fillInput catalog
       @setUrl catalog
 
-    showError: (error) ->
+    showError: (error, value) ->
       $win = $ window
       $input = @$ '.form-input'
 
       $input.blur().val error
         .addClass 'form-input_error'
         .one 'focus', ->
-          $input.removeClass('form-input_error').val ''
-          $win.off 'keydown'
+          $input.removeClass('form-input_error').val value
+          $win.off 'keypress paste'
 
-      $win.one 'keydown', -> $input.focus()
+      $win.one 'keypress paste', ({ type }) ->
+        value = '' if type is 'paste'
+        $input.focus()
 
     reset: ->
       @fillInput()
