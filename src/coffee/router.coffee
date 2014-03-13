@@ -1,4 +1,8 @@
+##
+# @module Router
 define ['backbone'], (Backbone) ->
+  ##
+  # @class
   class Router extends Backbone.Router
     routes:
       ':catalog/:card': 'catalog'

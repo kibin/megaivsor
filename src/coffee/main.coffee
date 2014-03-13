@@ -8,6 +8,8 @@ require.config
     error: '../views/error'
     spinner: '../views/spinner'
 
+##
+# @module main
 require [
   'router', 'carousel-model', 'carousel-view', 'form-model', 'form-view'
 ], (Router, Carousel, CarouselView, Form, FormView) ->
