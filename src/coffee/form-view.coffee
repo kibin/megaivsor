@@ -48,7 +48,7 @@ define ['backbone', 'jquery'], (Backbone, $) ->
       $input.blur().val error
         .addClass 'form-input_error'
         .one 'focus', ->
-          $input.removeClass('form-input_error').val value
+          ($input.removeClass 'form-input_error').val value
           $win.off 'keypress paste'
 
       $win.one 'keypress paste', ({ type }) ->
