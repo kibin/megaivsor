@@ -1,6 +1,4 @@
-define [
-  'backbone', 'jquery', 'carousel', 'error', 'spinner'
-], (Backbone, $, carousel, error, spinner) ->
+define ['backbone', 'jquery', 'templates'], (Backbone, $, templates) ->
   class CarouselView extends Backbone.View
     el: '.carousel'
     events:
@@ -105,11 +103,11 @@ define [
       @$el.empty()
 
     renderCarousel: (m, collection) ->
-      @$el.html (carousel body: items: collection.toJSON())
+      @$el.html (templates.carousel body: items: collection.toJSON())
 
-    renderError: (data) -> @$el.html (error data)
+    renderError: (data) -> @$el.html (templates.error data)
 
-    renderSpinner: -> @$el.html spinner()
+    renderSpinner: -> @$el.html templates.spinner()
 
     whichTransition: (target) ->
       transitionend = 'transitionend'
