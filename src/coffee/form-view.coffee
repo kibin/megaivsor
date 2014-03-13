@@ -38,7 +38,10 @@ define ['backbone', 'jquery'], (Backbone, $) ->
     # @param {Object} e объект с инфой об ивенте.
     onSubmit: (e) ->
       e.preventDefault()
-      value = ($ e.delegateTarget).find('.form-input').val()
+      $input = ($ e.delegateTarget).find('.form-input')
+      value = $input.val()
+
+      return ($input.val '').focus() unless value.trim()
 
       return @showError @invalid, value unless @validLink.test value
       value = value.replace /\D/g, ''
